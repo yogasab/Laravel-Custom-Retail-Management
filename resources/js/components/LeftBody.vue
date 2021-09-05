@@ -3,7 +3,7 @@
     <img :src="'/images/hamburger.png'" alt="">
 
     <div class="profile">
-      <h1>Hi, Yoga</h1>
+      <h1>Hello, Yoga</h1>
       <h2>Let's make your project more amazing</h2>
     </div>
 
@@ -13,58 +13,62 @@
     </div>
 
     <div class="project">
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
-        </div>
-        
-        <h6>Development</h6>
-      </div>
+      <h3>Projects <span>(18)</span></h3>
 
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
+      <div class="projects">
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Development</h6>
         </div>
-        
-        <h6>Design</h6>
-      </div>
 
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Design</h6>
         </div>
-        
-        <h6>Testing</h6>
-      </div>
 
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Testing</h6>
         </div>
-        
-        <h6>Medium Draft</h6>
-      </div>
 
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Medium Draft</h6>
         </div>
-        
-        <h6>Landing Page</h6>
-      </div>
 
-      <div class="a-project">
-        <div class="box-color">
-          <img :src="'/images/overlay.png'" alt="">
-          <span>PT</span>
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Landing Page</h6>
         </div>
-        
-        <h6>Add Project</h6>
+
+        <div class="a-project">
+          <div class="box-color">
+            <img :src="'/images/overlay.png'" alt="">
+            <span>PT</span>
+          </div>
+          
+          <h6>Add Project</h6>
+        </div>
       </div>
     </div>
     

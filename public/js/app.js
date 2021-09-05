@@ -2181,6 +2181,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -2225,7 +2229,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      todayTasks: [],
+      upcoming: [],
+      newTask: ""
+    };
+  },
+  created: function created() {
+    this.fetchTodayTasks();
+    this.fetchUpcoming();
+  },
+  methods: {
+    fetchUpcoming: function fetchUpcoming() {
+      var _this = this;
+
+      fetch('http://laravel-customer-retail-management.test/api/upcoming').then(function (res) {
+        return res.json();
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.upcoming = data;
+        console.log(data);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    addUpcomingTask: function addUpcomingTask() {},
+    fetchTodayTasks: function fetchTodayTasks() {}
+  }
+});
 
 /***/ }),
 
@@ -38071,64 +38144,68 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "project" }, [
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
-          _vm._v(" "),
-          _c("span", [_vm._v("PT")])
-        ]),
-        _vm._v(" "),
-        _c("h6", [_vm._v("Development")])
-      ]),
+      _vm._m(1),
       _vm._v(" "),
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+      _c("div", { staticClass: "projects" }, [
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
           _vm._v(" "),
-          _c("span", [_vm._v("PT")])
+          _c("h6", [_vm._v("Development")])
         ]),
         _vm._v(" "),
-        _c("h6", [_vm._v("Design")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
           _vm._v(" "),
-          _c("span", [_vm._v("PT")])
+          _c("h6", [_vm._v("Design")])
         ]),
         _vm._v(" "),
-        _c("h6", [_vm._v("Testing")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
           _vm._v(" "),
-          _c("span", [_vm._v("PT")])
+          _c("h6", [_vm._v("Testing")])
         ]),
         _vm._v(" "),
-        _c("h6", [_vm._v("Medium Draft")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
           _vm._v(" "),
-          _c("span", [_vm._v("PT")])
+          _c("h6", [_vm._v("Medium Draft")])
         ]),
         _vm._v(" "),
-        _c("h6", [_vm._v("Landing Page")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "a-project" }, [
-        _c("div", { staticClass: "box-color" }, [
-          _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
           _vm._v(" "),
-          _c("span", [_vm._v("PT")])
+          _c("h6", [_vm._v("Landing Page")])
         ]),
         _vm._v(" "),
-        _c("h6", [_vm._v("Add Project")])
+        _c("div", { staticClass: "a-project" }, [
+          _c("div", { staticClass: "box-color" }, [
+            _c("img", { attrs: { src: "/images/overlay.png", alt: "" } }),
+            _vm._v(" "),
+            _c("span", [_vm._v("PT")])
+          ]),
+          _vm._v(" "),
+          _c("h6", [_vm._v("Add Project")])
+        ])
       ])
     ])
   ])
@@ -38139,10 +38216,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "profile" }, [
-      _c("h1", [_vm._v("Hi, Yoga")]),
+      _c("h1", [_vm._v("Hello, Yoga")]),
       _vm._v(" "),
       _c("h2", [_vm._v("Let's make your project more amazing")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", [_vm._v("Projects "), _c("span", [_vm._v("(18)")])])
   }
 ]
 render._withStripped = true
@@ -38167,7 +38250,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "right" }, [
+  return _c("div", { attrs: { id: "right" } }, [
     _c("h1", [_vm._v("Development CRM")]),
     _vm._v(" "),
     _c("div", { staticClass: "horizontal" }, [
@@ -38176,7 +38259,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", [
       _vm._v(
-        "\n    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti dolorem distinctio explicabo adipisci quae possimus ipsam necessitatibus quam nesciunt! Dolore sunt ratione facere mollitia? Perspiciatis suscipit, beatae molestias dolore numquam saepe voluptatum. Maiores, odio. Hic dignissimos, dolorem dolorum tempore modi voluptatem, sunt, praesentium consectetur eius qui blanditiis. Sapiente quaerat, nostrum debitis earum tempore libero sit quod molestiae harum eligendi alias corrupti quam veritatis minus molestias? Consectetur perferendis, beatae harum accusamus vel nostrum et ea ipsum autem ad, a nemo rem. Quia vel repellat nobis neque ducimus nam. Quas dolorem deleniti alias, hic incidunt ipsa doloremque qui, facere consectetur, nesciunt minus.\n  "
+        "\n    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem sapiente quaerat nulla nesciunt obcaecati adipisci. Tempora, sit reiciendis? Eum natus alias beatae quaerat minima saepe, minus unde! Temporibus, in eum?\n  "
       )
     ]),
     _vm._v(" "),
@@ -38190,6 +38273,85 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "tasks-list" })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "upcoming" }, [
+      _c("div", { staticClass: "add-tasks" }, [
+        _c("h2", [_vm._v("Upcoming")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "add-action" }, [
+          _c("img", { attrs: { src: "/images/add.png", alt: "" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "form",
+        { attrs: { action: "" }, on: { submit: _vm.addUpcomingTask } },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newTask,
+                expression: "newTask"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.newTask },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.newTask = $event.target.value
+              }
+            }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "tasks-list" },
+        _vm._l(_vm.upcoming, function(upcomingTask) {
+          return _c("li", { key: upcomingTask.id }, [
+            _c("div", { staticClass: "info" }, [
+              _c("div", { staticClass: "left" }, [
+                _c("label", { staticClass: "myCheckBox" }, [
+                  _c("input", {
+                    attrs: { type: "checkbox", name: "test" },
+                    domProps: { checked: upcomingTask.completed },
+                    on: {
+                      change: function($event) {
+                        return _vm.checkUpcoming(upcomingTask.taskID)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span")
+                ]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(upcomingTask.title))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "right" }, [
+                _c("img", { attrs: { src: "/images/edit.png", alt: "" } }),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: { src: "/images/del.png", alt: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.delUpcoming(upcomingTask.taskID)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        }),
+        0
+      )
     ])
   ])
 }
