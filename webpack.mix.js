@@ -16,3 +16,4 @@ mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css");
 
 mix.browserSync("http://laravel-customer-retail-management.test/");
+mix.disableNotifications();

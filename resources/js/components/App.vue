@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="mcontainer">
     <body-component></body-component>
   </div>
 </template>
@@ -10,5 +10,5 @@ export default {
   components: {
     Body,
   },
-}
+};
 </script>

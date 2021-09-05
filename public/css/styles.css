@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "MyriadProLight";
+  font-weight: normal;
+  src: url("../font/MyriadPro-Light.otf"); }
+
+@font-face {
+  font-family: "MyriadProRegular";
+  font-weight: normal;
+  src: url("../font/MYRIADPRO-REGULAR.OTF"); }
+
+@font-face {
+  font-family: "MyriadProSemibold";
+  font-weight: normal;
+  src: url("../font/MYRIADPRO-SEMIBOLD.OTF"); }
+
+@font-face {
+  font-family: "MyriadProBold";
+  font-weight: normal;
+  src: url("../font/MYRIADPRO-BOLD.OTF"); }
+
+:root {
+  --primary1: #15172B;
+  --primary2: #262A41;
+  --customblue: #0026FF;
+  --custompink: #FF3250;
+  --customeyellow: #FFBB00;
+  --customgreen: #07E642;
+  --custompurple: #894FC6;
+  --customdarkblue: #121432;
+  --white: #ffffff;
+  --customgrey: #707070;
+  --customgreen1: #15D4A1; }
+
+body {
+  position: relative;
+  font-family: "MyriadProRegular";
+  background-color: var(--primary1); }
+  body::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none; }
+
+img {
+  user-select: none; }
+
+.mcontainer #body {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-areas: "Left Right";
+  padding: 16px; }
+  .mcontainer #body #left {
+    grid-area: Left;
+    padding: 15px;
+    position: relative; }
+    .mcontainer #body #left .hamburger {
+      position: absolute;
+      top: 0%;
+      left: 2%;
+      cursor: pointer; }
