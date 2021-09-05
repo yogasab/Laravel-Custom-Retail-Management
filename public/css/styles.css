@@ -75,7 +75,7 @@ body {
         left: 25px;
         cursor: pointer; }
       .mcontainer #body #left .search input {
-        border: unset;
+        border: none;
         padding: 0.2em;
         background-color: transparent;
         width: 100%;
@@ -197,8 +197,8 @@ body {
         justify-content: space-between; }
         .mcontainer #body #right .tasks .add-tasks h2,
         .mcontainer #body #right .upcoming .add-tasks h2 {
-          font-family: "MyriadProBold";
-          font-size: 15px;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+          font-size: 25px;
           font-weight: 400; }
         .mcontainer #body #right .tasks .add-tasks img,
         .mcontainer #body #right .upcoming .add-tasks img {
@@ -207,7 +207,8 @@ body {
       .mcontainer #body #right .upcoming input[type="text"],
       .mcontainer #body #right .tasks ul.tasks-list li .upcoming form,
       .mcontainer #body #right .upcoming ul.tasks-list li form {
-        border: unset;
+        border: none;
+        background-color: transparent;
         border-bottom: 1px solid var(--customgrey);
         width: 100%;
         caret-color: var(--primary1); }

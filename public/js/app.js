@@ -2269,6 +2269,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2290,13 +2312,97 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (_ref) {
         var data = _ref.data;
         _this.upcoming = data;
-        console.log(data);
       })["catch"](function (err) {
         return console.log(err);
       });
     },
-    addUpcomingTask: function addUpcomingTask() {},
-    fetchTodayTasks: function fetchTodayTasks() {}
+    addUpcomingTask: function addUpcomingTask(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+
+      if (this.upcoming.length > 4) {
+        alert("Please, complete today tasks");
+      } else {
+        var newTask = {
+          title: this.newTask,
+          waiting: true,
+          taskID: Math.random().toString(36).substring(7)
+        }; // Send POST Request
+
+        fetch('http://laravel-customer-retail-management.test/api/upcoming', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(newTask)
+        }).then(function () {
+          return _this2.upcoming.push(newTask);
+        });
+        this.newTask = "";
+      }
+    },
+    delUpcoming: function delUpcoming(taskID) {
+      var _this3 = this;
+
+      if (confirm("Are you sure want to delete?")) {
+        fetch('/api/upcoming/' + taskID, {
+          method: "DELETE"
+        }).then(function (res) {
+          return res.json();
+        }).then(function () {
+          _this3.upcoming = _this3.upcoming.filter(function (_ref2) {
+            var id = _ref2.taskID;
+            return id !== taskID;
+          });
+          console.log("Delete");
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    fetchTodayTasks: function fetchTodayTasks() {},
+    checkUpcoming: function checkUpcoming(taskID) {
+      var _this4 = this;
+
+      if (this.todayTasks.length > 4) {
+        alert("Please, complete today tasks");
+        window.location.href = '/';
+      } else {
+        this.addDailyTask(taskID); // this.add
+
+        fetch("/api/upcoming/".concat(taskID), {
+          method: "DELETE"
+        }).then(function () {
+          return _this4.upcoming = _this4.upcoming.filter(function (_ref3) {
+            var id = _ref3.taskID;
+            return id !== taskID;
+          });
+        });
+      }
+    },
+    addDailyTask: function addDailyTask(taskID) {
+      var _this5 = this;
+
+      // Get Task
+      var task = this.upcoming.filter(function (_ref4) {
+        var id = _ref4.taskID;
+        return id === taskID;
+      })[0];
+      console.log(task); // POST Request
+
+      fetch('/api/today-task', {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(task)
+      }).then(function () {
+        return _this5.todayTasks.unshift(task);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    }
   }
 });
 
@@ -38265,14 +38371,54 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "task" }, [
       _c("div", { staticClass: "add-tasks" }, [
-        _c("h2", [_vm._v("Today Task's")]),
+        _c("h2", [_vm._v("Today tasks")]),
         _vm._v(" "),
         _c("div", { staticClass: "add-action" }, [
           _c("img", { attrs: { src: "/images/add.png", alt: "" } })
         ])
       ]),
       _vm._v(" "),
-      _c("ul", { staticClass: "tasks-list" })
+      _c(
+        "ul",
+        { staticClass: "tasks-list" },
+        _vm._l(_vm.todayTasks, function(todayTask) {
+          return _c("li", { key: todayTask.id }, [
+            _c("div", { staticClass: "info" }, [
+              _c("div", { staticClass: "left" }, [
+                _c("label", { staticClass: "myCheckBox" }, [
+                  _c("input", {
+                    attrs: { type: "checkbox", name: "test" },
+                    domProps: { checked: todayTask.completed },
+                    on: {
+                      change: function($event) {
+                        return _vm.updateTodayTask(todayTask.taskID)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span")
+                ]),
+                _vm._v(" "),
+                _c("h4", [_vm._v(_vm._s(todayTask.title))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "right" }, [
+                _c("img", { attrs: { src: "/images/edit.png", alt: "" } }),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: { src: "/images/del.png", alt: "" },
+                  on: {
+                    click: function($event) {
+                      return _vm.delUpcoming(_vm.upcomingTask.taskID)
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        }),
+        0
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "upcoming" }, [

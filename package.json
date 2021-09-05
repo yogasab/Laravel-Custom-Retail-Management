@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "eslint": "^7.32.0",
         "node-sass": "^4.14.1"
     }
 }

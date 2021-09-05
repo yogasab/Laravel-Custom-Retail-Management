@@ -4,7 +4,6 @@
 
     <div class="horizontal">
       <img :src="'/images/horizontal.png'" alt="horizontal"/>
-
     </div>
 
     <p>
@@ -13,7 +12,7 @@
 
     <div class="task">
       <div class="add-tasks">
-        <h2>Today Task's</h2>
+        <h2>Today tasks</h2>
 
         <div class="add-action">
           <img :src="'/images/add.png'" alt="">
@@ -21,6 +20,29 @@
       </div>
 
       <ul class="tasks-list">
+        <li v-for="todayTask in todayTasks" v-bind:key="todayTask.id">
+          <div class="info">
+
+            <div class="left">
+              <label class="myCheckBox">
+                <input 
+                  type="checkbox" 
+                  name="test" 
+                  :checked="todayTask.completed" 
+                  @change="updateTodayTask(todayTask.taskID)"
+                />
+                <span></span>
+              </label>
+              <h4>{{todayTask.title}}</h4>
+            </div>
+
+            <div class="right">
+              <img :src="'/images/edit.png'" alt="">
+              <img :src="'/images/del.png'" alt="" @click="delUpcoming(upcomingTask.taskID)">
+            </div>
+
+          </div>
+        </li>
       </ul>
     </div>
 
@@ -86,12 +108,70 @@ export default {
         .then(res => res.json())
         .then(({data}) => {
           this.upcoming = data;
-          console.log(data);
         })
         .catch((err) => console.log(err));
     },
-    addUpcomingTask(){},
-    fetchTodayTasks(){}
+    addUpcomingTask(e){
+      e.preventDefault();
+      if(this.upcoming.length > 4){
+        alert("Please, complete today tasks");
+      } else {
+        const newTask = {
+          title: this.newTask,
+          waiting: true,
+          taskID: Math.random().toString(36).substring(7)
+        };
+        // Send POST Request
+        fetch('http://laravel-customer-retail-management.test/api/upcoming', {
+          method: "POST",
+          headers: {
+            "content-type": "application/json"
+          },
+          body: JSON.stringify(newTask),
+        }).then(() => this.upcoming.push(newTask));
+        this.newTask = "";
+      }
+    },
+    delUpcoming(taskID){
+      if(confirm("Are you sure want to delete?")){
+        fetch('/api/upcoming/'+taskID, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then(() => {
+            this.upcoming = this.upcoming.filter(
+              ({taskID: id})=> id !== taskID
+            );
+            console.log("Delete");
+        }).catch((err) => console.log(err));
+      }
+    },
+    fetchTodayTasks(){},
+    checkUpcoming(taskID){
+      if(this.todayTasks.length > 4){
+        alert("Please, complete today tasks");
+        window.location.href = '/';
+      } else {
+        this.addDailyTask(taskID);
+        // this.add
+        fetch(`/api/upcoming/${taskID}`, {
+          method: "DELETE"
+        }).then(() => (this.upcoming = this.upcoming.filter(({taskID: id}) => id !== taskID)));
+      }
+    },
+    addDailyTask(taskID){
+      // Get Task
+      const task = this.upcoming.filter(({taskID: id}) => id === taskID)[0];
+      console.log(task);
+      // POST Request
+      fetch('/api/today-task', {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(task),
+      }).then(() => this.todayTasks.unshift(task)).catch(err => console.log(err));
+    }
   },
 }
 </script>
