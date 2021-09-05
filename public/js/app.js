@@ -2291,6 +2291,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2361,9 +2377,20 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    fetchTodayTasks: function fetchTodayTasks() {},
-    checkUpcoming: function checkUpcoming(taskID) {
+    fetchTodayTasks: function fetchTodayTasks() {
       var _this4 = this;
+
+      fetch('/api/today-task').then(function (res) {
+        return res.json();
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        _this4.todayTasks = data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    checkUpcoming: function checkUpcoming(taskID) {
+      var _this5 = this;
 
       if (this.todayTasks.length > 4) {
         alert("Please, complete today tasks");
@@ -2374,19 +2401,19 @@ __webpack_require__.r(__webpack_exports__);
         fetch("/api/upcoming/".concat(taskID), {
           method: "DELETE"
         }).then(function () {
-          return _this4.upcoming = _this4.upcoming.filter(function (_ref3) {
-            var id = _ref3.taskID;
+          return _this5.upcoming = _this5.upcoming.filter(function (_ref4) {
+            var id = _ref4.taskID;
             return id !== taskID;
           });
         });
       }
     },
     addDailyTask: function addDailyTask(taskID) {
-      var _this5 = this;
+      var _this6 = this;
 
       // Get Task
-      var task = this.upcoming.filter(function (_ref4) {
-        var id = _ref4.taskID;
+      var task = this.upcoming.filter(function (_ref5) {
+        var id = _ref5.taskID;
         return id === taskID;
       })[0];
       console.log(task); // POST Request
@@ -2398,10 +2425,44 @@ __webpack_require__.r(__webpack_exports__);
         },
         body: JSON.stringify(task)
       }).then(function () {
-        return _this5.todayTasks.unshift(task);
+        return _this6.todayTasks.unshift(task);
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    delTodayTask: function delTodayTask(taskID) {
+      var _this7 = this;
+
+      if (confirm("Are you sure want to delete?")) {
+        fetch("/api/today-task/".concat(taskID), {
+          method: "DELETE"
+        }).then(function (res) {
+          return res.json();
+        }).then(function () {
+          return _this7.todayTasks = _this7.todayTasks.filter(function (_ref6) {
+            var id = _ref6.taskID;
+            return id !== taskID;
+          });
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    updateTodayTask: function updateTodayTask(taskID) {
+      var _this8 = this;
+
+      if (confirm("Are you sure?")) {
+        fetch('/api/today-task/' + taskID, {
+          method: "DELETE"
+        }).then(function () {}).then(function () {
+          _this8.todayTasks = _this8.todayTasks.filter(function (_ref7) {
+            var id = _ref7.taskID;
+            return id !== taskID;
+          });
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
     }
   }
 });
@@ -38369,7 +38430,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "task" }, [
+    _c("div", { staticClass: "tasks" }, [
       _c("div", { staticClass: "add-tasks" }, [
         _c("h2", [_vm._v("Today tasks")]),
         _vm._v(" "),
@@ -38409,10 +38470,29 @@ var render = function() {
                   attrs: { src: "/images/del.png", alt: "" },
                   on: {
                     click: function($event) {
-                      return _vm.delUpcoming(_vm.upcomingTask.taskID)
+                      return _vm.delTodayTask(todayTask.taskID)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    class: {
+                      inprogress: !todayTask.approved,
+                      approved: todayTask.approved
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(
+                          todayTask.approved ? "Approved" : "In progress"
+                        ) +
+                        "\n            "
+                    )
+                  ]
+                )
               ])
             ])
           ])
@@ -38491,7 +38571,26 @@ var render = function() {
                       return _vm.delUpcoming(upcomingTask.taskID)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    class: {
+                      inprogress: !upcomingTask.approved,
+                      approved: upcomingTask.approved
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(
+                          upcomingTask.approved ? "Approved" : "In progress"
+                        ) +
+                        "\n            "
+                    )
+                  ]
+                )
               ])
             ])
           ])

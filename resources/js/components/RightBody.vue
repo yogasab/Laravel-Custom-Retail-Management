@@ -10,7 +10,7 @@
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem sapiente quaerat nulla nesciunt obcaecati adipisci. Tempora, sit reiciendis? Eum natus alias beatae quaerat minima saepe, minus unde! Temporibus, in eum?
     </p>
 
-    <div class="task">
+    <div class="tasks">
       <div class="add-tasks">
         <h2>Today tasks</h2>
 
@@ -38,7 +38,15 @@
 
             <div class="right">
               <img :src="'/images/edit.png'" alt="">
-              <img :src="'/images/del.png'" alt="" @click="delUpcoming(upcomingTask.taskID)">
+              <img :src="'/images/del.png'" alt="" @click="delTodayTask(todayTask.taskID)">
+              <button
+                v-bind:class="{
+                  inprogress: !todayTask.approved,
+                  approved: todayTask.approved,
+                }"
+              >
+                {{ todayTask.approved ? "Approved" : "In progress" }}
+              </button>
             </div>
 
           </div>
@@ -78,6 +86,14 @@
               <div class="right">
                 <img :src="'/images/edit.png'" alt="">
                 <img :src="'/images/del.png'" alt="" @click="delUpcoming(upcomingTask.taskID)">
+                <button
+                v-bind:class="{
+                  inprogress: !upcomingTask.approved,
+                  approved: upcomingTask.approved,
+                }"
+              >
+                {{ upcomingTask.approved ? "Approved" : "In progress" }}
+              </button>
               </div>
 
             </div>
@@ -146,7 +162,12 @@ export default {
         }).catch((err) => console.log(err));
       }
     },
-    fetchTodayTasks(){},
+    fetchTodayTasks(){
+      fetch('/api/today-task')
+        .then(res => res.json())
+        .then(({data}) => {this.todayTasks = data})
+        .catch(err => console.log(err))
+    },
     checkUpcoming(taskID){
       if(this.todayTasks.length > 4){
         alert("Please, complete today tasks");
@@ -171,6 +192,26 @@ export default {
         },
         body: JSON.stringify(task),
       }).then(() => this.todayTasks.unshift(task)).catch(err => console.log(err));
+    },
+    delTodayTask(taskID){
+      if(confirm("Are you sure want to delete?")){
+        fetch(`/api/today-task/${taskID}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then(() => (this.todayTasks = this.todayTasks.filter(({taskID: id}) => id !== taskID)))
+          .catch(err => console.log(err))
+      }
+    },
+    updateTodayTask(taskID){
+      if(confirm("Are you sure?")){
+        fetch('/api/today-task/'+taskID, {
+          method: "DELETE"
+        })
+          .then(() => {})
+          .then(() => {this.todayTasks = this.todayTasks.filter(({taskID: id}) => id !== taskID)})
+          .catch(err => console.log(err))
+      }
     }
   },
 }
