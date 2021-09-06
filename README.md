@@ -53,5 +53,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Laravel-Custom-Retail-Management
 
+# Laravel-Custom-Retail-Management 
+
+![image](https://user-images.githubusercontent.com/68288783/132167782-07da55ac-7afb-473b-a5f4-f7b0d6a66169.png)
